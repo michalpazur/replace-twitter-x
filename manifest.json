@@ -1,0 +1,10 @@
+{
+  "name": "Replace \"X\" Logo",
+  "description": "Replaces \"X\" logo of Twitter with \"XD\".",
+  "version": "1.0",
+  "manifest_version": 3,
+  "content_scripts": [{
+    "js": ["replace.js"],
+    "matches": ["https://twitter.com/*"]
+  }]
+}

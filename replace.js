@@ -4,7 +4,7 @@ const xdTextPath =
 
 let intevrval;
 
-const replace = () => {
+const replaceX = () => {
   const path = document.querySelector(logoSelector + " path");
   path.setAttribute("d", xdTextPath);
   const svg = document.querySelector(logoSelector + " svg");
@@ -13,4 +13,24 @@ const replace = () => {
   clearInterval(intevrval);
 };
 
-intevrval = setInterval(replace, 100);
+const faviconSelector = "link[rel='shortcut icon']";
+const customFaviconSelector = "link[data-favicon='custom']";
+
+const replaceIcon = () => {
+  const favicon = document.head.querySelector(faviconSelector);
+  let href = favicon.getAttribute("href");
+  href = href.replace("3.ico", "2.ico");
+  let customFavicon = document.head.querySelector(customFaviconSelector);
+  if (!customFavicon) {
+    customFavicon = document.createElement("link");
+    customFavicon.setAttribute("data-favicon", "custom");
+    customFavicon.setAttribute("rel", "shortcut icon");
+    customFavicon.setAttribute("href", href);
+    document.head.appendChild(customFavicon);
+  } else {
+    customFavicon.setAttribute("href", href);
+  }
+};
+
+intevrval = setInterval(replaceX, 100);
+setInterval(replaceIcon, 2000);
